@@ -1262,7 +1262,7 @@ const planoForm = (function () {
         const resp = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(Object.assign({ access_key: CONFIG.web3formsKey, subject: "Novo cadastro MedSênior – " + dados["Nome"], from_name: "Site Márcia Garcez", replyto: dados["E-mail"] }, dados))
+          body: JSON.stringify(Object.assign({ access_key: CONFIG.web3formsKey, subject: "Novo cadastro MedSênior – " + dados["Nome"], from_name: "Site Márcia Garcez", replyto: dados["E-mail"], "Aviso": "Novo cadastro pelo site da Márcia Garcez. Entre em contato com o cliente pelo telefone ou e-mail abaixo." }, dados))
         });
         const json = await resp.json().catch(() => ({}));
         if (!resp.ok || !json.success) throw new Error("falha");
