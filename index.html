@@ -197,6 +197,8 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
   50% { translate: 0 -14px; rotate: 6deg; }
 }
 .hero__texto { position: relative; z-index: 2; max-width: 720px; }
+/* Selo oficial de corretora autorizada */
+.hero__selo-oficial { display: block; width: min(380px, 100%); height: auto; margin: 0 auto 30px; filter: drop-shadow(0 10px 22px rgba(0, 30, 15, .45)); }
 /* Título serifado */
 .hero h1 {
   margin-top: 0; color: #fff; font-family: var(--f-titulo); font-weight: 400;
@@ -545,6 +547,17 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
 .rodape__selo { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
 .rodape__selo .selo { width: 74px; height: 74px; filter: none; }
 .rodape__selo p { font-size: .88rem; font-weight: 700; color: #fff; line-height: 1.35; }
+.rodape__selo-oficial { display: block; width: min(340px, 100%); height: auto; margin-top: 22px; }
+.rodape__regulatorio { margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; }
+.rodape__orgaos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.rodape__orgao { display: flex; flex-direction: column; line-height: 1.15; color: #fff; }
+.rodape__orgao strong { font-size: 1.35rem; font-weight: 800; letter-spacing: .02em; }
+.rodape__orgao small { font-size: .7rem; color: rgba(255, 255, 255, .72); }
+.rodape__ans { padding: 8px 14px; border: 1.5px solid rgba(255, 255, 255, .85); font-size: .9rem; font-weight: 700; color: #fff; white-space: nowrap; }
+.rodape__links { display: flex; flex-wrap: wrap; gap: 6px 10px; list-style: none; margin: 0; padding: 0; font-size: .92rem; }
+.rodape__links li + li::before { content: "|"; margin-right: 10px; color: rgba(255, 255, 255, .4); }
+.rodape__links a { color: rgba(255, 255, 255, .9); text-underline-offset: 3px; }
+.rodape__links a:hover { color: var(--lima-claro); }
 .rodape__aviso { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: .86rem; color: rgba(255, 255, 255, .7); }
 .rodape__aviso p { max-width: 80ch; }
 
@@ -640,6 +653,8 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
   .cta__bloco { padding: 56px 18px; border-radius: 28px; }
   .cta .btn { width: 100%; }
   .rodape__grade { grid-template-columns: 1fr; gap: 32px; }
+  .rodape__links { gap: 10px 20px; }
+  .rodape__links li + li::before { content: none; }
   .rodape__marcas img:first-child { height: 52px; }
   .rodape__marcas img:last-child { height: 28px; }
   .rodape { padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
@@ -760,6 +775,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
     <svg class="hero__folha hero__folha--c" aria-hidden="true"><use href="#i-folha"/></svg>
     <div class="container">
       <div class="hero__texto">
+        <img class="hero__selo-oficial entra" src="assets/selo-corretora-medsenior.png" alt="Selo MedSênior: Corretora autorizada Márcia Garcez de Castro, Reg. N.º 017790" width="760" height="222">
         <h1 class="entra">Viva cada fase com mais <span class="destaque">tranquilidade.</span></h1>
         <p class="hero__lead entra" style="--atraso:180ms">Planos de saúde especializados para pessoas a partir de 44 anos, com cuidado e atenção em cada etapa da vida.</p>
         <div class="hero__acao entra" style="--atraso:280ms">
@@ -1078,10 +1094,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
           <img src="assets/medsenior-logo.png" alt="MedSênior" width="463" height="160" loading="lazy">
         </div>
         <p class="rodape__sobre">Márcia Garcez, consultora de planos de saúde. Atendimento personalizado para você escolher o plano MedSênior ideal.</p>
-        <div class="rodape__selo">
-          <svg class="selo" role="img" aria-label="Selo Concessionária Autorizada MedSênior"><use href="#selo"/></svg>
-          <p>Concessionária autorizada<br>MedSênior<span class="concessionaria__registro" data-registro hidden></span></p>
-        </div>
+        <img class="rodape__selo-oficial" src="assets/selo-corretora-medsenior.png" alt="Selo MedSênior: Corretora autorizada Márcia Garcez de Castro, Reg. N.º 017790" width="760" height="222" loading="lazy">
       </div>
       <div>
         <h3>Navegação</h3>
@@ -1104,6 +1117,18 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
           <a class="social social--instagram" data-instagram href="https://www.instagram.com/marciagarcezsaude/" target="_blank" rel="noopener" aria-label="Instagram @marciagarcezsaude"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
         </div>
       </div>
+    </div>
+    <div class="rodape__regulatorio">
+      <div class="rodape__orgaos">
+        <span class="rodape__orgao"><strong>ANS</strong><small>Agência Nacional de<br>Saúde Suplementar</small></span>
+        <span class="rodape__orgao"><strong>TISS</strong><small>Troca de Informação em<br>Saúde Suplementar</small></span>
+        <span class="rodape__ans" title="Registro da operadora MedSênior na ANS">ANS nº 33561-4</span>
+      </div>
+      <ul class="rodape__links">
+        <li><a href="#medsenior">Sobre</a></li>
+        <li><a href="#cotacao" data-ir-cotacao>Tabela de preços</a></li>
+        <li><a href="privacidade.html">Política de Privacidade</a></li>
+      </ul>
     </div>
     <div class="rodape__aviso">
       <p>Coberturas, rede credenciada, carências, abrangência e valores variam conforme o plano e as condições de contratação. MedSênior é marca da operadora.</p>
