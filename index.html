@@ -551,9 +551,8 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
 .rodape__selo-oficial { display: block; width: min(340px, 100%); height: auto; margin-top: 22px; }
 .rodape__regulatorio { margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; }
 .rodape__orgaos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
-.rodape__orgao { display: flex; flex-direction: column; line-height: 1.15; color: #fff; }
-.rodape__orgao strong { font-size: 1.35rem; font-weight: 800; letter-spacing: .02em; }
-.rodape__orgao small { font-size: .7rem; color: rgba(255, 255, 255, .72); }
+.rodape__orgao { display: block; }
+.rodape__orgao img { height: 36px; width: auto; }
 .rodape__ans { padding: 8px 14px; border: 1.5px solid rgba(255, 255, 255, .85); font-size: .9rem; font-weight: 700; color: #fff; white-space: nowrap; }
 .rodape__links { display: flex; flex-wrap: wrap; gap: 6px 10px; list-style: none; margin: 0; padding: 0; font-size: .92rem; }
 .rodape__links li + li::before { content: "|"; margin-right: 10px; color: rgba(255, 255, 255, .4); }
@@ -1122,8 +1121,8 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
     </div>
     <div class="rodape__regulatorio">
       <div class="rodape__orgaos">
-        <span class="rodape__orgao"><strong>ANS</strong><small>Agência Nacional de<br>Saúde Suplementar</small></span>
-        <span class="rodape__orgao"><strong>TISS</strong><small>Troca de Informação em<br>Saúde Suplementar</small></span>
+        <a class="rodape__orgao" href="https://www.gov.br/ans/pt-br" target="_blank" rel="noopener"><img src="assets/logo-ans.png" alt="ANS – Agência Nacional de Saúde Suplementar" width="601" height="132" loading="lazy"></a>
+        <span class="rodape__orgao"><img src="assets/logo-tiss.png" alt="TISS – Troca de Informação em Saúde Suplementar" width="286" height="129" loading="lazy"></span>
         <span class="rodape__ans" title="Registro da operadora MedSênior na ANS">ANS nº 33561-4</span>
       </div>
       <ul class="rodape__links">
