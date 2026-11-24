@@ -396,12 +396,23 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
 
 .form { padding: 48px; background: #fff; display: grid; gap: 18px; align-content: start; }
 .form__titulo { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; color: var(--verde-escuro); }
-.form__plano {
-  display: inline-flex; align-items: center; gap: 10px; justify-self: start; padding: 6px 8px 6px 14px; border-radius: 999px;
-  background: var(--verde-claro); color: var(--verde-escuro); font-weight: 700; font-size: .92rem;
+.form__planos { border: 0; margin: 0; padding: 0; }
+.form__planos legend { padding: 0; margin-bottom: 9px; font-weight: 700; font-size: .95rem; color: var(--verde-escuro); }
+.form__planos legend span { font-weight: 400; font-size: .85rem; color: var(--texto-suave); }
+.form__planos-lista { display: flex; flex-wrap: wrap; gap: 8px; }
+.form__opcao { position: relative; cursor: pointer; }
+.form__opcao input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.form__opcao span {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 10px 16px; border-radius: 999px;
+  border: 1.5px solid var(--linha-forte); background: #fff; color: var(--verde-escuro); font-weight: 700; font-size: .95rem;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
 }
-.form__plano button { width: 28px; height: 28px; border-radius: 50%; border: 0; display: grid; place-items: center; background: #fff; color: var(--verde); cursor: pointer; }
-.form__plano svg { width: 14px; height: 14px; }
+.form__opcao span::before { content: ""; width: 0; height: 14px; overflow: hidden; background: center / 14px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3 4.8 9 10 3.2' fill='none' stroke='%23C1DE12' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); transition: width .2s ease; margin-right: -8px; }
+.form__opcao:hover span { border-color: var(--verde); }
+.form__opcao input:checked + span { background: var(--verde); border-color: var(--verde); color: #fff; }
+.form__opcao input:checked + span::before { width: 14px; margin-right: 0; }
+.form__opcao input:focus-visible + span { outline: 3px solid var(--lima-claro); outline-offset: 2px; }
+@media (max-width: 640px) { .form__opcao span { padding: 9px 16px; } }
 .campos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .campo { position: relative; display: grid; gap: 7px; min-width: 0; }
 .campo--largo { grid-column: 1 / -1; }
@@ -950,7 +961,6 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
 
         <form class="form" id="form-cadastro" novalidate>
           <p class="form__titulo">Seus dados</p>
-          <p class="form__plano" id="form-plano" hidden><span>Plano de interesse: <strong></strong></span><button type="button" aria-label="Remover plano de interesse"><svg aria-hidden="true"><use href="#i-fechar"/></svg></button></p>
           <div class="campos">
             <div class="campo campo--largo">
               <label for="f-nome">Nome</label>
@@ -976,6 +986,15 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
                 <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="voce@email.com"></div>
               <span class="campo__erro">Informe um e-mail válido.</span>
             </div>
+            <fieldset class="campo campo--largo form__planos" id="form-plano">
+              <legend>Planos de interesse <span>(opcional, pode marcar mais de um)</span></legend>
+              <div class="form__planos-lista">
+                <label class="form__opcao"><input type="checkbox" name="planos" value="Enfermaria"><span>Enfermaria</span></label>
+                <label class="form__opcao"><input type="checkbox" name="planos" value="Apartamento"><span>Apartamento</span></label>
+                <label class="form__opcao"><input type="checkbox" name="planos" value="MedSênior Black"><span>Black</span></label>
+                <label class="form__opcao"><input type="checkbox" name="planos" value="MedSênior Infinite"><span>Infinite</span></label>
+              </div>
+            </fieldset>
           </div>
           <p class="form__falha" id="form-falha" role="alert" hidden></p>
           <button class="btn btn--primario" type="submit" id="form-enviar">Calcular agora <svg class="seta" aria-hidden="true"><use href="#i-seta"/></svg></button>
@@ -1224,23 +1243,19 @@ const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").mat
 
 /* ---------- Planos: escolher um plano leva ao cadastro com ele marcado ---------- */
 const planoForm = (function () {
-  const caixa = document.getElementById("form-plano");
-  const nome = caixa.querySelector("strong");
-  let atual = "";
-  const definir = plano => {
-    atual = plano || "";
-    nome.textContent = atual;
-    caixa.hidden = !atual;
-    document.querySelectorAll(".plano").forEach(p => p.classList.toggle("ativo", !!atual && p.dataset.plano === atual));
-  };
-  caixa.querySelector("button").addEventListener("click", () => definir(""));
+  const caixas = [...document.querySelectorAll('#form-plano input[name="planos"]')];
+  const marcar = () => document.querySelectorAll(".plano").forEach(p =>
+    p.classList.toggle("ativo", caixas.some(c => c.checked && c.value === p.dataset.plano)));
+  caixas.forEach(c => c.addEventListener("change", marcar));
   document.querySelectorAll("[data-cotar]").forEach(btn => {
     btn.addEventListener("click", () => {
-      definir(btn.closest(".plano").dataset.plano);
+      const plano = btn.closest(".plano").dataset.plano;
+      caixas.forEach(c => { if (c.value === plano) c.checked = true; });
+      marcar();
       setTimeout(() => document.getElementById("f-nome").focus({ preventScroll: true }), reduzMovimento ? 0 : 650);
     });
   });
-  return { valor: () => atual };
+  return { valor: () => caixas.filter(c => c.checked).map(c => c.value).join(", "), limpar: () => { caixas.forEach(c => { c.checked = false; }); marcar(); } };
 })();
 
 /* ---------- Cadastro: máscara, validação e envio ---------- */
@@ -1294,7 +1309,7 @@ const planoForm = (function () {
       "Idade": f.idade.value,
       "E-mail": f.email.value.trim()
     };
-    if (planoForm.valor()) dados["Plano de interesse"] = planoForm.valor();
+    if (planoForm.valor()) dados["Planos de interesse"] = planoForm.valor();
     const texto = ["Olá, Márcia! Quero uma cotação dos planos MedSênior.", ""]
       .concat(Object.entries(dados).map(([k, v]) => k + ": " + v)).join("\n");
     const wa = linkWhatsApp(texto);
