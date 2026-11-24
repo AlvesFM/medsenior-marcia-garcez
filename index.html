@@ -187,7 +187,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
     linear-gradient(0deg, rgba(0, 51, 26, .55) 0%, transparent 35%);
 }
 .hero--sem-foto .hero__veu { display: none; }
-.hero__onda { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 90px; z-index: 1; color: var(--branco); }
+.hero__onda { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 170px; z-index: 1; color: var(--branco); pointer-events: none; }
 .hero__folha { position: absolute; z-index: -1; pointer-events: none; color: #fff; opacity: .1; animation: flutuar 9s ease-in-out infinite; }
 .hero__folha--a { width: 130px; left: 2%; top: 20%; }
 .hero__folha--b { width: 80px; left: 44%; bottom: 20%; opacity: .08; animation-delay: -3s; animation-duration: 11s; }
@@ -624,7 +624,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
   .hero__garantias { gap: 10px 18px; }
   .hero__garantias li { font-size: .9rem; }
   .hero__folha--b { display: none; }
-  .hero__onda { height: 50px; }
+  .hero__onda { height: 94px; }
 
   .planos, .beneficios, .cadastro, .institucional, .faq { padding-block: 64px; }
   .planos__grade, .beneficios__grade { grid-template-columns: 1fr; gap: 14px; }
@@ -793,7 +793,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
         </ul>
       </div>
     </div>
-    <svg class="hero__onda" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 60c180-40 360-56 600-30s420 50 600 26 240-40 240-40v74H0Z"/></svg>
+    <svg class="hero__onda" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="onda-degrade" gradientUnits="userSpaceOnUse" x1="0" y1="20" x2="0" y2="150"><stop offset="0" stop-color="#3E7A4A" stop-opacity="0"/><stop offset=".5" stop-color="#4F8A57" stop-opacity=".16"/><stop offset="1" stop-color="#9DC38E" stop-opacity=".42"/></linearGradient><filter id="onda-suave" x="-2%" y="-60%" width="104%" height="220%"><feGaussianBlur stdDeviation="2 12"/></filter><filter id="onda-halo" x="-2%" y="-60%" width="104%" height="220%"><feGaussianBlur stdDeviation="1 5"/></filter></defs><path fill="url(#onda-degrade)" filter="url(#onda-suave)" d="M0 104c180-40 360-56 600-30s420 50 600 26 240-40 240-40v74H0Z"/><path fill="#DCEBD3" fill-opacity=".24" filter="url(#onda-halo)" d="M0 130c180-40 360-56 600-30s420 50 600 26 240-40 240-40v74H0Z"/><path fill="currentColor" d="M0 140c180-40 360-56 600-30s420 50 600 26 240-40 240-40v74H0Z"/></svg>
   </section>
 
   <!-- 3. Os quatro planos -->
