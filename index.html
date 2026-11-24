@@ -681,6 +681,8 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
 /* Computador: a foto se estende para a direita, afastando o casal do texto */
 @media (min-width: 961px) {
   .hero__fundo img { position: absolute; left: 0; top: 0; width: 122%; max-width: none; }
+  /* Cabeçalho e hero um pouco mais largos: logos, selo e título mais à esquerda */
+  .cabecalho .container, .hero .container { max-width: 1376px; padding-inline: 48px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
