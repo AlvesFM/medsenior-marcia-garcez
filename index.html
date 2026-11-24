@@ -332,6 +332,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
 .selo { width: 168px; height: 168px; flex-shrink: 0; filter: drop-shadow(0 16px 24px rgba(0, 51, 26, .28)); }
 .selo__giro { transform-origin: 100px 100px; animation: girar 40s linear infinite; }
 @keyframes girar { to { transform: rotate(360deg); } }
+.concessionaria__selo { width: 300px; height: auto; filter: drop-shadow(0 12px 22px rgba(0, 51, 26, .22)); }
 .concessionaria__texto h2 { font-size: clamp(1.4rem, 1.2vw + 1rem, 1.9rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.2; }
 .concessionaria__texto p { margin-top: 10px; color: var(--texto-suave); font-size: 1.04rem; max-width: 52ch; }
 .concessionaria__registro { margin-top: 10px; font-size: .9rem; font-weight: 700; color: var(--verde); }
@@ -636,6 +637,7 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
   .concessionaria__faixa .btn { justify-self: stretch; }
   .concessionaria__texto p { margin-inline: auto; }
   .selo { width: 140px; height: 140px; }
+  .concessionaria__selo { width: min(300px, 100%); }
   .beneficio { padding: 22px 20px; display: grid; grid-template-columns: auto 1fr; column-gap: 16px; }
   .beneficio__icone { grid-row: span 2; width: 48px; height: 48px; margin: 0; }
   .beneficio__icone svg { width: 23px; height: 23px; }
@@ -862,13 +864,13 @@ section[id] { scroll-margin-top: calc(var(--cabecalho) + 12px); }
     </div>
   </section>
 
-  <!-- 4. Selo de concessionária autorizada -->
+  <!-- 4. Selo de corretora autorizada -->
   <section class="concessionaria" aria-labelledby="t-concessionaria">
     <div class="container">
       <div class="concessionaria__faixa" data-reveal>
-        <svg class="selo" role="img" aria-label="Selo Concessionária Autorizada MedSênior"><use href="#selo"/></svg>
+        <img class="concessionaria__selo" src="assets/selo-corretora-medsenior.png" alt="Selo MedSênior: Corretora autorizada Márcia Garcez de Castro, Reg. N.º 017790" width="760" height="222" loading="lazy">
         <div class="concessionaria__texto">
-          <h2 id="t-concessionaria">Concessionária autorizada MedSênior</h2>
+          <h2 id="t-concessionaria">Corretora autorizada MedSênior</h2>
           <p>Contrate seu plano com a Márcia Garcez e conte com orientação do primeiro contato até a contratação.</p>
           <p class="concessionaria__registro" data-registro hidden></p>
         </div>
