@@ -1250,8 +1250,20 @@ const planoForm = (function () {
     p.classList.toggle("ativo", caixas.some(c => c.checked && c.value === p.dataset.plano)));
   caixas.forEach(c => c.addEventListener("change", marcar));
   document.querySelectorAll("[data-cotar]").forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", e => {
       const plano = btn.closest(".plano").dataset.plano;
+      /* No celular o formulário fica abaixo do texto verde: rola direto até ele */
+      const secao = document.getElementById("cotacao");
+      const form = document.getElementById("form-cadastro");
+      const empilhado = form.getBoundingClientRect().top - secao.getBoundingClientRect().top > 200;
+      if (empilhado) {
+        e.preventDefault();
+        const alvo = () => form.getBoundingClientRect().top + window.scrollY - document.getElementById("cabecalho").getBoundingClientRect().bottom - 12;
+        window.scrollTo({ top: alvo(), behavior: reduzMovimento ? "auto" : "smooth" });
+        /* imagens que carregam durante a rolagem podem mudar a altura da página: corrige no fim */
+        setTimeout(() => { if (Math.abs(alvo() - window.scrollY) > 4) window.scrollTo({ top: alvo(), behavior: "smooth" }); }, 900);
+        history.replaceState(null, "", "#cotacao");
+      }
       caixas.forEach(c => { if (c.value === plano) c.checked = true; });
       marcar();
       setTimeout(() => document.getElementById("f-nome").focus({ preventScroll: true }), reduzMovimento ? 0 : 650);
